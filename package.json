@@ -1,15 +1,43 @@
 {
-  "name": "static-next-site",
-  "version": "0.1.0",
-  "private": true,
+  "name": "blog-starter-typescript",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export",
-    "start": "next start"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc"
   },
   "dependencies": {
-    "next": "10.0.9",
-    "react": "17.0.1",
-    "react-dom": "17.0.1"
-  }
+    "@aws-amplify/ui-react": "^1.0.6",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-brands-svg-icons": "^5.15.3",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
+    "aws-amplify": "^3.3.26",
+    "classnames": "2.2.6",
+    "date-fns": "2.10.0",
+    "fibers": "^5.0.0",
+    "file-loader": "^6.2.0",
+    "gray-matter": "4.0.2",
+    "next": "^10.1.3",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-pdf": "^5.2.0",
+    "remark": "11.0.2",
+    "remark-html": "^10.0.0",
+    "sass": "^1.32.8",
+    "swr": "^0.5.5",
+    "typescript": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/classnames": "^2.2.10",
+    "@types/jest": "^25.2.2",
+    "@types/node": "^14.14.37",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.12",
+    "autoprefixer": "^10.2.1",
+    "postcss": "^8.2.9",
+    "tailwindcss": "^2.1.1"
+  },
+  "license": "MIT"
 }
