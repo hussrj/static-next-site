@@ -6,7 +6,7 @@ import { getAllPosts } from "../lib/api";
 import Head from "next/head";
 import Post from "../types/post";
 import Amplify from "aws-amplify";
-import awsExports from "../src/aws-exports";
+import awsExports from "src/aws-exports";
 Amplify.configure(awsExports);
 
 type Props = {
