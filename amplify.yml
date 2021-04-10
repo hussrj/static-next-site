@@ -3,11 +3,11 @@ frontend:
     preBuild:
       commands:
         - amplifyPush --simple
+        - npm ci
         - npx next telemetry disable
-        - yarn install
     build:
       commands:
-        - yarn run export
+        - npm run build
   artifacts:
     baseDirectory: out
     files:
