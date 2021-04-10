@@ -10,9 +10,9 @@ backend:
         - amplifyPush --simple
         - npm run build
         - aws s3 mb s3://serverless-bucket-rjhuss
-        - aws s3 sync "s3://serverless-bucket-rjhuss/${USER_BRANCH}/.serverless" .serverless   # pull previous state
-        - npx serverless                                                                  # generate new & deploy!
-        - aws s3 sync .serverless "s3://serverless-bucket-rjhuss/${USER_BRANCH}/.serverless"   # push state to bucket
+        - aws s3 sync "s3://serverless-bucket-rjhuss/${USER_BRANCH}/.serverless" .serverless # pull previous state
+        - npx serverless # generate new & deploy!
+        - aws s3 sync .serverless "s3://serverless-bucket-rjhuss/${USER_BRANCH}/.serverless" # push state to bucket
 frontend:
   phases:
     build:
@@ -21,7 +21,7 @@ frontend:
   artifacts:
     baseDirectory: .next
     files:
-      - '**/*'
+      - "**/*"
   cache:
     paths:
       - node_modules/**/*
