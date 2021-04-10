@@ -1,24 +1,16 @@
-version: 1
-
-backend:
+frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
-    build:
-      commands:
         - amplifyPush --simple
-        - npm run build
-        - npm start
-frontend:
-  phases:
+        - yarn install
     build:
       commands:
-        - echo "nextjs app, skipping"
+        - yarn run export
   artifacts:
-    baseDirectory: .next
+    baseDirectory: out
     files:
-      - "**/*"
+      - '**/*'
   cache:
     paths:
       - node_modules/**/*
