@@ -1,4 +1,5 @@
-rjhussapp:
+myNextApp:
   component: "@sls-next/serverless-component@1.18.0"
-inputs:
-  bucketRegion: us-east-2
+  inputs:
+    bucketName: rjhussapp-serverless
+    bucketRegion: us-east-2
