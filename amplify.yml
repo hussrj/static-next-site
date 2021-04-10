@@ -2,8 +2,8 @@ frontend:
   phases:
     preBuild:
       commands:
-        - npm ci
         - amplifyPush --simple
+        - npm ci
     build:
       commands:
         - npx next telemetry disable

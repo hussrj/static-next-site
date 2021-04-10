@@ -5,12 +5,10 @@ import MainView from "../components/main-view";
 import { getAllPosts } from "../lib/api";
 import Head from "next/head";
 import Post from "../types/post";
-import Amplify, { API, graphqlOperation } from "aws-amplify";
-import awsExports from "src/aws-exports";
+import { API, graphqlOperation } from "aws-amplify";
 import { ExternalComponent, ListExternalComponentsQuery } from "src/API";
 import { listExternalComponents } from "src/graphql/queries";
 import { GraphQLResult } from "@aws-amplify/api";
-Amplify.configure(awsExports);
 
 type Props = {
   allPosts: Post[];
