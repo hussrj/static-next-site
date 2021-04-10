@@ -7,7 +7,7 @@ frontend:
     build:
       commands:
         - npx next telemetry disable
-        - next build && next export
+        - npm run build
   artifacts:
     baseDirectory: out
     files:
