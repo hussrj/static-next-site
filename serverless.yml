@@ -1,0 +1,5 @@
+rjhussapp:
+  component: "@sls-next/serverless-component@1.18.0"
+  inputs:
+    bucketName: serverless-bucket-rjhuss
+    bucketRegion: us-east-2

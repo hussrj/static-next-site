@@ -1,0 +1,17 @@
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - amplifyPush --simple
+        - npm ci
+    build:
+      commands:
+        - npx next telemetry disable
+        - npm run build
+  artifacts:
+    baseDirectory: out
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*

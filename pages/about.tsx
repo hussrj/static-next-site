@@ -4,10 +4,20 @@ import Container from "../components/container";
 import PostBody from "../components/post-body";
 import CoverImage from "../components/cover-image";
 import { ABOUT_CONTENT } from "../lib/constants";
+import { ExternalComponent, ListExternalComponentsQuery } from "src/API";
+import { API, graphqlOperation } from "aws-amplify";
+import { listExternalComponents } from "src/graphql/queries";
+import { GraphQLResult } from "@aws-amplify/api";
 
-const AboutView = () => {
+let externalComponents: ExternalComponent[];
+
+type Props = {
+  externalComponents: ExternalComponent[];
+};
+
+const AboutView = ({ externalComponents }: Props) => {
   return (
-    <MainView>
+    <MainView components={externalComponents}>
       <Container>
         <article className="mb-32">
           <Head>
@@ -27,3 +37,45 @@ const AboutView = () => {
 };
 
 export default AboutView;
+
+export const getStaticProps = async () => {
+  const externalToolsResult = (await API.graphql(
+    graphqlOperation(listExternalComponents, {
+      filter: {
+        tags: {
+          contains: "rjhuss",
+        },
+      },
+      authMode: "AWS_IAM",
+    })
+  )) as GraphQLResult<ListExternalComponentsQuery>;
+  let externalComponents: ExternalComponent[] = [];
+  if (
+    externalToolsResult.data !== undefined &&
+    externalToolsResult.data.listExternalComponents !== undefined &&
+    externalToolsResult.data.listExternalComponents !== null
+  ) {
+    externalToolsResult.data.listExternalComponents.items?.map((extComp: ExternalComponent | null) => (
+      externalComponents.push(
+        extComp = extComp ? extComp : {
+          __typename: "ExternalComponent",
+          id: "1",
+          name: "Loading...",
+          href: "",
+          tags: [""],
+          _version: 1,
+          _deleted: false,
+          _lastChangedAt: 1,
+          createdAt: "2020-04-10",
+          updatedAt: "2020-04-10",
+        })
+      )
+    );
+  } else {
+    externalComponents = [];
+  }
+
+  return {
+    props: { externalComponents },
+  };
+};
