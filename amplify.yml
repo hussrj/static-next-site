@@ -3,6 +3,7 @@ frontend:
     preBuild:
       commands:
         - amplifyPush --simple
+        - npx next telemetry disable
         - yarn install
     build:
       commands:
