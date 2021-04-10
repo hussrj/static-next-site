@@ -15,6 +15,7 @@ async function fetchExternalComponents() {
             contains: "rjhuss",
           },
         },
+        authMode: 'AWS_IAM',
       })
     )) as GraphQLResult<ListExternalComponentsQuery>;
     if (
