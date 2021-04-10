@@ -15,7 +15,7 @@ async function fetchExternalComponents() {
             contains: "rjhuss",
           },
         },
-        authMode: 'AWS_IAM',
+        authMode: "AWS_IAM",
       })
     )) as GraphQLResult<ListExternalComponentsQuery>;
     if (
@@ -38,11 +38,7 @@ export default async (
   res: NextApiResponse<(ExternalComponent | null)[] | undefined | null>
 ) => {
   await fetchExternalComponents();
-  if (
-    req.method === "GET" &&
-    externalComponents !== null &&
-    externalComponents !== undefined
-  ) {
+  if (externalComponents !== null && externalComponents !== undefined) {
     res.status(200).json(externalComponents);
   } else {
     res.status(200).json([]);

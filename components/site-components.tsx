@@ -1,44 +1,9 @@
-import { InferGetStaticPropsType } from "next";
-import { GetStaticProps } from "next";
-import useSwr from "swr";
+import { GetServerSideProps, NextPage } from "next";
 import { ExternalComponent } from "../src/API";
 
-type Props = {
-  data: any;
-  error: any;
-};
-
-const fetcher = (url: RequestInfo) => fetch(url).then((res) => res.json());
-
-interface LabelValue {
-  value: string;
-  label: string;
-}
-
-let list: Array<LabelValue> = Array();
-
-const SiteComponents = () => {
-  if (list.length <= 0) {
-    const { data, error } = useSwr("/api/external-components", fetcher);
-    if (error)
-      return (
-        <div className="invisible sm:visible text-white inline-block text-center text-sm">
-          Failed to load external components
-        </div>
-      );
-    if (!data)
-      return (
-        <div className="invisible sm:visible text-white inline-block text-center text-sm">
-          Loading...
-        </div>
-      );
-    data.map((extComponent: ExternalComponent) =>
-      list.push({
-        value: extComponent.href || "",
-        label: extComponent.name || "",
-      })
-    );
-  }
+const SiteComponents: NextPage<{ components: ExternalComponent[] }> = (
+  props
+) => {
   return (
     <div className="text-center">
       <span className="inline-block text-white text-center text-xs sm:text-sm">
@@ -86,18 +51,19 @@ const SiteComponents = () => {
             aria-orientation="vertical"
             aria-labelledby="components-menu"
           >
-            {list.map((extComp: LabelValue) => (
-              <div key={extComp.value}>
-                <a
-                  href={extComp.value}
-                  target="_blank"
-                  className="block px-4 py-2 text-xs sm:text-sm leading-5 hover:underline hover:bg-blue-600 text-gray-700 hover:text-white focus:outline-none transition duration-150 ease-in-out"
-                  role="menuitem"
-                >
-                  {extComp.label}
-                </a>
-              </div>
-            ))}
+            {props.components?.map((extComp: ExternalComponent | null) => (
+                  <div key={extComp ? extComp.id : ''}>
+                    <a
+                      href={extComp ? extComp.href : ''}
+                      target="_blank"
+                      className="block px-4 py-2 text-xs sm:text-sm leading-5 hover:underline hover:bg-blue-600 text-gray-700 hover:text-white focus:outline-none transition duration-150 ease-in-out"
+                      role="menuitem"
+                    >
+                      {extComp ? extComp.name : ''}
+                    </a>
+                  </div>
+                ))
+            }
           </div>
         </div>
       </div>
