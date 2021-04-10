@@ -2,7 +2,6 @@ frontend:
   phases:
     preBuild:
       commands:
-        - mkdir out
         - amplifyPush --simple
         - npm ci
         - npx next telemetry disable
@@ -10,7 +9,7 @@ frontend:
       commands:
         - npm run build
   artifacts:
-    baseDirectory: out
+    baseDirectory: build
     files:
       - '**/*'
   cache:
