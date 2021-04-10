@@ -2,6 +2,7 @@ frontend:
   phases:
     preBuild:
       commands:
+        - mkdir out
         - amplifyPush --simple
         - npm ci
         - npx next telemetry disable
