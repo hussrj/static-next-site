@@ -1,0 +1,266 @@
+\documentclass[11pt,letterpaper]{moderncv}
+\usepackage[]{fontspec}
+\usepackage[scale=0.83]{geometry}
+\usepackage{lmodern}
+\usepackage{textcomp}
+
+\moderncvstyle{banking}
+\moderncvcolor{blue}
+\setsansfont[Color=primary, Path=fonts/, BoldItalicFont=Montserrat-BoldItalic, BoldFont=Montserrat-Bold, ItalicFont=Montserrat-Italic]{Montserrat-Regular}
+\setmainfont[Mapping=tex-text, Path=fonts/, BoldItalicFont=Montserrat-BoldItalic, BoldFont=Montserrat-Bold, ItalicFont=Montserrat-Italic]{Montserrat-Regular}
+\nopagenumbers{}
+
+\makeatletter
+\newcommand*{\shifttext}[2]{%
+  \settowidth{\@tempdima}{#2}%
+  \makebox[\@tempdima]{\hspace*{#1}#2}%
+}
+\makeatother
+
+\makeatletter
+\renewcommand*{\makehead}{%
+  \setlength{\makeheaddetailswidth}{\textwidth}%
+  \hfil%
+  \parbox{\makeheaddetailswidth}{%
+    \centering%
+    % name and title
+    \namestyle{\@firstname~\@lastname}%
+    \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}% \isundefined doesn't work on \@title, as LaTeX itself defines \@title (before it possibly gets redefined by \title) 
+    % optional detailed information
+    \if@details{%
+      \\%
+      \addressfont\color{color2}%
+      \addvspace{0.1em}
+      \ifthenelse{\isundefined{\@born}}{}{\addtomakeheaddetails{\bornsymbol\@born}}%
+      \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
+        \addtomakeheaddetails{\csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}}%
+      \ifthenelse{\isundefined{\@email}}{}{\addtomakeheaddetails{\emailsymbol\emaillink{\@email}}}%
+      \ifthenelse{\isundefined{\@homepage}}{}{\addtomakeheaddetails{\homepagesymbol\httpslink{\@homepage}}}%
+      \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
+        \addtomakeheaddetails{\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}}%
+      \ifthenelse{\isundefined{\@extrainfo}}{}{\addtomakeheaddetails{\@extrainfo}}%
+      \flushmakeheaddetails}\fi}\\[2.5em]}% need to force a \par after this to avoid weird spacing bug at the first section if no blank line is left after \makehead
+\makeatother
+
+\makeatletter
+\RenewDocumentCommand\cvskillplainlegend{s +O{.25em} +O{\skillPlainLegend@defaultLevelOne} +O{\skillPlainLegend@defaultLevelTwo} +O{\skillPlainLegend@defaultLevelThree} +O{\skillPlainLegend@defaultLevelFour} +O{\skillPlainLegend@defaultLevelFive} +m}{%
+    \IfBooleanTF#1{% if a star is given, add dashed line
+        \begingroup%
+            \arrayrulecolor{color1}%
+            % calculate descriptor widths
+            \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-3\skilllegend@padding}%
+            \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-3\skilllegend@padding}%
+            \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}%
+                            @{\hspace{\separatorcolumnwidth}}%
+                            p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
+                            p{2\skilllegend@padding}p{\cvskilllegend@leftdescriptorwidth}@{}@{\hspace{2\skillmatrix@padding}}%
+                            p{\cvskill@width}@{\hspace{\skilllegend@padding}};{.6pt/1pt}%
+                            p{2\skilllegend@padding}%
+                            p{2\cvskilllegend@rightdescriptorwidth}@{}}%
+                \raggedleft\hintstyle{#8}  & \cvskill{1}& & {\skillLegend@FontSize #3} & \cvskill{4}& &{\skillLegend@FontSize #6} \\%
+                            %
+                        & \cvskill{2} & & {\skillLegend@FontSize #4} & \cvskill{5}& & {\skillLegend@FontSize #7} \\%
+                    %         
+                        & \cvskill{3} & & {\skillLegend@FontSize #5} & & & %
+            \end{tabular}%
+        \endgroup%
+        \par\addvspace{#2}}{%
+        % if no star is given, do not add dashed line
+        \begingroup%
+            % calculate descriptor widths, note that we use less padding
+            \setlength{\cvskilllegend@leftdescriptorwidth}{\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
+            \setlength{\cvskilllegend@rightdescriptorwidth}{\skilllegend@bodylength-\skilllegend@leftdesriptorfactor\skilllegend@bodylength-\cvskill@width-\skillmatrix@padding-2\skilllegend@padding}%
+            \begin{tabular}{@{}p{\skilllegend@hintscolumnwidth}%
+                            @{\hspace{\separatorcolumnwidth}}%
+                            p{\cvskill@width}@{\hspace{2\skilllegend@padding}}%
+                            p{\cvskilllegend@leftdescriptorwidth}@{\hspace{2\skillmatrix@padding}}%
+                            p{\cvskill@width}@{\hspace{2\skilllegend@padding}}%
+                            p{2\cvskilllegend@rightdescriptorwidth}@{}}%
+                \raggedleft\hintstyle{#8}  & \cvskill{1} & {\skillLegend@FontSize #3} & \cvskill{4} &{\skillLegend@FontSize #6} \\%
+                            %
+                        & \cvskill{2} & {\skillLegend@FontSize #4} & \cvskill{5}  &{\skillLegend@FontSize #7} \\%
+                    %         
+                        & \cvskill{3} & {\skillLegend@FontSize #5 }  &  & %
+            \end{tabular}%
+        \endgroup%
+        \par\addvspace{#2}%
+    }%
+}%
+\makeatother
+
+\makeatletter
+  \RenewDocumentCommand\cvskillentry{s +O{.25em} +m +m +m +m +m}{%
+    \IfBooleanTF{#1}{%  dotted line above entry if * specified
+        \begingroup
+            \renewcommand{\arraystretch}{1.25}
+            \arrayrulecolor{color1}
+            \begin{tabular}{@{}p{\skillmatrix@hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}%
+                    p{\cvskill@width}@{\hspace{\skillmatrix@padding}}%
+                    p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
+                    p{\cvskill@experiencewidth} @{\hspace{\skillmatrix@padding}}%
+                    p{\skillmatrix@commentwidth}@{}}%
+                \cdashline{2-5}[.6pt/1pt]
+                \raggedleft\hintstyle{#3} &\centering \cvskill{#4} &\centering {#5} & \centering {#6} &\textbf{#7}%\itshape#7
+            \end{tabular}%
+        \endgroup
+        \par%\addvspace{#2}
+    }{% no dotted line
+      \begin{tabular}{@{}p{\skillmatrix@hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}%
+              p{\cvskill@width}@{\hspace{\skillmatrix@padding}}%
+              p{\cvskill@descriptorwidth}@{\hspace{\skillmatrix@padding}}%
+              p{\cvskill@experiencewidth}%
+              @{\hspace{\skillmatrix@padding}}%
+              p{\skillmatrix@commentwidth}@{}}%
+          \raggedleft\hintstyle{#3}\small &\centering \cvskill{#4} &\centering {#5} & \centering {#6} &\textbf{#7}%\itshape#7
+      \end{tabular}%
+      \par\addvspace{#2}
+    }
+  }
+\makeatother
+
+% Manually specify widths for our skill matrix - it was not expanding the full width of the document
+\makeatletter
+  \RenewDocumentCommand{\recompute@cvskillmatrix@lengths}{}{%
+      \setlength{\skillmatrix@padding}{1ex}%
+      \setlength{\separatorcolumnwidth}{\skillmatrix@padding}%
+      \setlength{\skillmatrix@hintscolumnwidth}{\widthof{``Languag''}}%
+      \setlength{\cvskill@width}{\widthof{\cvskill{5}}}%
+      \setlength{\cvskill@experiencewidth}{\widthof{``Year''}}%
+      \setlength{\skillmatrix@bodylength}{\maincolumnwidth-\skillmatrix@hintscolumnwidth-\separatorcolumnwidth}%
+      \setlength{\skillmatrix@columnwidth}{\skillmatrix@bodylength}%
+      \setlength{\cvskill@descriptorwidth}{\widthof{``AWS CloudForma''}}%
+      \setlength{\skillmatrix@commentwidth}{24em}%
+      \setlength{\skilllegend@padding}{0.6ex}%
+      \setlength{\skilllegend@hintscolumnwidth}{\skillmatrix@hintscolumnwidth}%
+      \setlength{\skilllegend@bodylength}{\skillmatrix@bodylength}%
+      \RenewDocumentCommand{\skilllegend@leftdesriptorfactor}{}{0.6}%
+  }
+\makeatother
+
+% Modify the moderncv title/header such that it has our image centered, surrounded by contact information
+\makeatletter
+\renewcommand*{\makecvtitle}{%
+  \setlength{\makeheaddetailswidth}{\textwidth}\hfil\parbox{\makeheaddetailswidth}{\centering%
+    % name and title
+    \namestyle{\@firstname~\@lastname}%
+    \ifthenelse{\equal{\@title}{}}{}{\titlestyle{~|~\@title}}%
+    \\%
+    \color{color2}\addtomakeheaddetails{{\raisebox{-12mm}[0pt][0pt]{\parbox{0.5\linewidth-\@photowidth}{\raggedleft\addresssymbol\@addressstreet\\%
+    \collectionloop{phones}{% the key holds the phone type (=symbol command prefix), the item holds the number
+      \csname\collectionloopkey phonesymbol\endcsname\collectionloopitem}\\%
+    \emailsymbol\emaillink{\@email}}\quad%
+    \parbox{\@photowidth}{\includegraphics[width=\@photowidth]{\@photo}}\quad%
+    \parbox{0.5\linewidth-\@photowidth}{\raggedright\homepagesymbol\httpslink{\@homepage}\\%
+    \collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
+      \csname\collectionloopkey socialsymbol\endcsname\collectionloopitem\\}}}}}%
+    \flushmakeheaddetails}\\%
+    \ifthenelse{\isundefined{\@quote}}%
+    {}%
+    {{\centering{\raisebox{-26mm}[0pt][0pt]{\begin{minipage}{1.2\quotewidth}\centering\quotestyle{\@quote}\end{minipage}}}\\[8.2em]}}%
+  \par\makecvfoot}%
+\makeatother
+
+% personal data
+\name{Robert}{Hussey}
+\title{Software Developer}
+\address{Cape May, NJ}
+\phone[mobile]{(609)~742~1247}
+\email{hussrj@gmail.com}
+\homepage{rjhuss.com}
+
+% Social icons
+\social[linkedin]{robert-hussey}
+\social[github]{hussrj}
+
+%\extrainfo{additional information}
+\photo[64pt][0.4pt]{profile.png}
+\quote{"We are like butterflies who flutter for a day and think it's forever."}
+\setlength{\footskip}{54.40001pt}
+
+\moderncvbody{1}
+\moderncvfoot{1}
+
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+\thispagestyle{empty}
+
+\section{Education}
+\cventry{2011--2013}{M.S. in Computer Science}{Rowan University}{Glassboro, NJ}{\textit{3.9}}{Alpha Epsilon Lambda Honor Society}  % arguments 3 to 6 can be left empty
+\cventry{2009--2011}{B.S. in Computer Science and Information Systems}{The Richard Stockton College of NJ}{Galloway, NJ}{\textit{4.0}}{Summa Cum Laude and Program Distinction}
+
+\section{Experience}
+\cventry{2019--2021}{Software Developer}{Edmunds GovTech}{Northfield, NJ}{}{MCSJ/Sabre - Financial ERP Solutions for Local Government.
+  \begin{itemize}
+    \item Helped kick-off the re-engineering of legacy software including backend and frontend components, as well as a new test framework.
+          \begin{itemize}
+            \item Java, Angular, AWS, SpringBoot, Docker, JUnit 5, Mockito
+          \end{itemize}
+    \item Introduced a framework for testing legacy product code.
+          \begin{itemize}
+            \item Java, JUnit, Mockito, DbUnit, Maven, Docker
+          \end{itemize}
+    \item Working with our Concept team, worked on the implementation and launch of new, client-focused features.
+          \begin{itemize}
+            \item Integration of SalesForce (Java, SalesForce Lightning REST API)
+            \item A financial dashboard using AWS services (SQS, Lambda, QuickSight)
+          \end{itemize}
+  \end{itemize}}
+\cventry{2015--2019}{Lead Java Software Developer}{Computer Service \& Support}{Linwood, NJ}{}{Avalon Laboratory Information System for clinical and toxicology labs.
+  \begin{itemize}
+    \item Started during the intial stages of a relaunch of our LIS software.
+    \item Led the architecting of a cloud-enabled version.
+          \begin{itemize}
+            \item AWS EC2, VPC, AppStream 2.0
+          \end{itemize}
+  \end{itemize}
+}
+
+
+\section{Languages and Skills}
+\fontsize{9}{11}\selectfont
+\cvskillplainlegend[0.4em][Basic Knowledge][Intermediate project experience][Extensive project experience][Deep knowledge/project experience][Expert/Guru (always more to learn)]{Legend}
+
+\cvskillhead[-0.2em]%
+
+\cvskillentry*{Language:}{5}{Java}{6}{Most common work and academic experience}
+\cvskillentry{}{2}{Angular}{1}{Used in re-engineering a Swing/JavaFX frontend}
+\cvskillentry{}{2}{JavaScript}{1}{AWS Lambda as well as frontend work experience}
+\cvskillentry{}{3}{Python}{2}{Used in packaging and deployment along with scripts}
+\cvskillentry{}{4}{Bash/Sh}{5}{Automation, packaging, and deployment scripts}
+\cvskillentry{}{3}{PHP}{2}{Used in website development and maintenance}
+\cvskillentry{}{3}{C\#/.Net}{3}{Used often in coursework and academic projects}
+\cvskillentry{}{3}{C/C++}{2}{C++ convinced me to pursue computer science}
+\cvskillhead[-0.2em]%
+\cvskillentry*{DevOps:}{4}{AWS CloudFormation}{3}{AWS training. Infrastructure as code}
+\cvskillentry{}{4}{AWS CloudWatch}{3}{Monitoring applications and infrastructure}
+\cvskillentry{}{3}{GitHub CI/CD}{1}{In use along with amazon services for rjhuss.com}
+\cvskillentry{}{4}{Agile/Scrum}{3}{Stand-ups, post-mortems, and iteration planning}
+\cvskillentry{}{3}{Docker}{2}{Used in deploying test and QA environments}
+\cvskillentry{}{2}{Postman}{1}{Testing APIs along with continuous integration}
+\cvskillentry*{OS:}{5}{Unix/Linux}{5}{AIX and Ubuntu. Arch and Fedora personally}
+\cvskillentry{}{4}{Windows}{6}{Batch scripting and task automation}
+
+\fontsize{10}{12}\selectfont
+\section{Publications}
+\cvitem{\textbf{Title}}{\emph{A Comparative Study of Proactive and Reactive Geographical Routing Protocols for MANET}}
+\cvitem{Authors}{Rob Hussey, Earl Huff, Zabih Shinwari, and Vasil Hnatyshin}
+\cvitem{Journal}{Proc. of the 12th International Conference on Wireless Networks (ICWN'13)}
+\cvitem{Description}{Completed with my master's degree. This paper compares the performance of reactive and proactive geographical location–aided routing protocols for MANETs through simulation using the OPNET Modeler software package}
+\cvitem{\textbf{Title}}{\emph{How to Use HAProxy for Load Balancing}}
+\cvitem{Authors}{Robert Hussey}
+\cvitem{Website}{\href{https://www.linode.com/docs/guides/how-to-use-haproxy-for-load-balancing/}{linode.com/docs/guides/how-to-use-haproxy-for-load-balancing/}}
+\cvitem{Description}{A short guide on using HAProxy for load balancing with special regard to using it with Linode services}
+
+\section{Interests}
+\cvitem{Linux}{\emph{I've had fun tinkering with Linux since first installing Slackware back in high school}}
+\cvitem{Guitar}{\emph{Just starting to learn! It has been a great distraction from things during Covid}}
+\cvitem{Biking}{\emph{Outdoors, great exercise. Excited for the warmer weather!}}
+
+\clearpage
+
+\end{document}
+%% end of file `template.tex'.
