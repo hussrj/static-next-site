@@ -6,8 +6,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import { ExternalComponent, ListExternalComponentsQuery } from "src/API";
 import { listExternalComponents } from "src/graphql/queries";
 import { GraphQLResult } from "@aws-amplify/api";
-
-let externalComponents: ExternalComponent[];
+import { HOME_OG_IMAGE_URL } from "../lib/constants";
 
 type Props = {
   externalComponents: ExternalComponent[];
@@ -24,12 +23,13 @@ const ResumeView =({ externalComponents }: Props) => {
     <MainView components={externalComponents}>
       <Head>
         <title>RJHUSS</title>
+        <meta property="og:image" content={HOME_OG_IMAGE_URL} />
       </Head>
       <div className="mt-1">
         <Container>
           <Document file="./resume.pdf">
             <div className="block text-center mx-auto">
-              <div className="overflow-hidden rounded-lg inline-flex border border-blue-900">
+              <div className="pt-3 overflow-hidden rounded-lg inline-flex border border-blue-900">
                 <Page size="LETTER" pageNumber={1} />
               </div>
               <div className="overflow-hidden rounded-lg inline-flex border border-blue-900">
