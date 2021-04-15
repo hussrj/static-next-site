@@ -7,8 +7,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import { ExternalComponent, ListExternalComponentsQuery } from "src/API";
 import { listExternalComponents } from "src/graphql/queries";
 import { GraphQLResult } from "@aws-amplify/api";
-
-let externalComponents: ExternalComponent[];
+import { HOME_OG_IMAGE_URL } from "../lib/constants";
 
 type Props = {
   allPosts: Post[];
@@ -22,7 +21,7 @@ const PostsView = ({ allPosts, externalComponents }: Props) => {
         <article className="mb-32">
           <Head>
             <title>Posts | RJHUSS</title>
-            <meta property="og:image" content="/ogrjhuss.png" />
+            <meta property="og:image" content={HOME_OG_IMAGE_URL} />
           </Head>
           <div className="items-center justify-center mt-8 mb-4 md:mb-8 sm:mx-0 container mx-auto h-screen">
             {allPosts ? (
