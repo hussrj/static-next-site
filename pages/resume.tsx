@@ -30,10 +30,10 @@ const ResumeView =({ externalComponents }: Props) => {
           <Document file="./resume.pdf">
             <div className="block text-center mx-auto">
               <div className="pt-3 overflow-hidden rounded-lg inline-flex border border-blue-900">
-                <Page size="LETTER" pageNumber={1} />
+                <Page pageNumber={1} />
               </div>
               <div className="overflow-hidden rounded-lg inline-flex border border-blue-900">
-                <Page size="LETTER" pageNumber={2} />
+                <Page pageNumber={2} />
               </div>
             </div>
           </Document>
