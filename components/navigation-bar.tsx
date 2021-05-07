@@ -1,9 +1,6 @@
-import Link from "next/link";
 import { withRouter, NextRouter } from "next/router";
 import React, { ReactElement } from "react";
 import NavigationButton from "./navigation-button";
-import Intro from "./site-components";
-import Container from "./container";
 
 interface WithRouterProps {
   router: NextRouter;

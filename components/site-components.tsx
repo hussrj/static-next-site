@@ -1,4 +1,4 @@
-import { GetServerSideProps, NextPage } from "next";
+import { NextPage } from "next";
 import { ExternalComponent } from "../src/API";
 
 const SiteComponents: NextPage<{ components: ExternalComponent[] }> = (

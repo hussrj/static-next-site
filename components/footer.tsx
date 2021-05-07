@@ -1,10 +1,6 @@
-import { GetServerSideProps } from "next";
 import Container from "./container";
 import SiteComponents from "./site-components";
-import { GraphQLResult } from "@aws-amplify/api";
-import { API, graphqlOperation } from "aws-amplify";
-import { listExternalComponents } from "../src/graphql/queries";
-import { ExternalComponent, ListExternalComponentsQuery } from "../src/API";
+import { ExternalComponent } from "../src/API";
 
 type Props = {
   components: ExternalComponent[];
