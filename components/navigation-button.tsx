@@ -23,9 +23,9 @@ class NavigationButton extends React.Component<MyComponentProps> {
             this.props.router.pathname === this.props.path
               ? "bg-blue-600 border"
               : ""
-          } w-full justify-end items-end cursor-pointer flex md:inline-flex md:w-auto pr-0 px-2 py-3 rounded text-white hover:bg-blue-600`}
+          } w-full justify-end items-center cursor-pointer flex md:inline-flex md:w-auto pr-0 px-2 py-3 rounded text-white hover:bg-blue-600`}
         >
-          <div className="items-center fill-current h-8 text-white">{this.props.icon}</div>
+          <div className="h-5 fill-current text-white">{this.props.icon}</div>
           <span className="text-md lg:text-lg px-2">{this.props.label}</span>
         </div>
       </Link>
