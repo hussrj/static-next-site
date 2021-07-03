@@ -3,16 +3,16 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   purge: ['./components/**/*.tsx', './pages/**/*.tsx'],
   theme: {
+    fontFamily: {
+      techMono: ['Share Tech Mono', 'monospace', 'sans-serif'],
+      montserrat: ['Montserrat', 'serif']
+    },
     extend: {
       screens: {
         'minwidth': '700px',
       },
       colors: {
         cyan: colors.cyan,
-      },
-      fontFamily: {
-        techMono: ['Share Tech Mono', 'monospace', 'sans-serif'],
-        montserrat: ['Montserrat', 'serif']
       },
       spacing: {
         28: '7rem',
