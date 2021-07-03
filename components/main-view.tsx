@@ -3,6 +3,7 @@ import Meta from "./meta";
 import Header from "./header";
 import { OWNER_AUTHOR } from "../lib/constants";
 import { ExternalComponent } from "src/API";
+import React from "react";
 
 type Props = {
   children: React.ReactNode;
