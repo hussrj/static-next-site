@@ -2,7 +2,7 @@
 title: 'Creating RJHUSS using AWS Amplify (AWS AppSync, GraphQL, AWS Cognito) and Next.js'
 excerpt: 'AWS Amplify is a powerful set of tools and services to quickly connect and launch full-stack applications that use Amazon Web Services'
 coverImage: '/assets/network.jpg'
-date: '2020-04-05T05:09:00.000Z'
+date: '2021-04-05T05:09:00.000Z'
 author:
   name: Rob Hussey
   picture: '/assets/blog/authors/light-huss.jpg'

@@ -7,12 +7,6 @@
 /* Stop purging. */
 
 /* Write you own custom component styles here */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Share+Tech+Mono&display=swap');
-
-#post-body div p a:hover {
-  color: #1E3A8A;
-}
-
 #components-menu ~ #components-menu-dropdown {
   --transform-translate-x: 0;
   --transform-translate-y: 0;

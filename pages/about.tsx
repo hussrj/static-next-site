@@ -24,7 +24,7 @@ const AboutView = ({ externalComponents }: Props) => {
             <meta property="og:image" content={HOME_OG_IMAGE_URL} />
           </Head>
           <div className="mt-2 mb-4 md:mb-8 sm:mx-0">
-            <CoverImage title="About" src="/assets/about.png" />
+            <CoverImage title="About" src="/assets/about.jpg" />
           </div>
           <PostBody
             content={ABOUT_CONTENT}
