@@ -25,7 +25,7 @@ class NavigationButton extends React.Component<MyComponentProps> {
               : ""
           } w-full justify-end items-end cursor-pointer flex md:inline-flex md:w-auto pr-0 px-2 py-3 rounded text-white hover:bg-blue-600`}
         >
-          <div className="text-md lg:text-lg h-full">{this.props.icon}</div>
+          <div className="items-center fill-current h-8 text-white">{this.props.icon}</div>
           <span className="text-md lg:text-lg px-2">{this.props.label}</span>
         </div>
       </Link>

@@ -2,7 +2,7 @@
 title: 'Comparing Samba and NFS for hosting a workspace directory'
 excerpt: 'Although our version control repository may be hosted on a service such as GitHub or GitLab, it can help to have our entire workspace directory hosted on Samba or NFS. This allows us to mount the directory to a drive in our Windows workstations and mount it to a path in those running Linux.'
 coverImage: '/assets/data-storage.jpg'
-date: '2020-04-07T05:09:00.000Z'
+date: '2021-04-07T05:09:00.000Z'
 author:
   name: Rob Hussey
   picture: '/assets/blog/authors/light-huss.jpg'

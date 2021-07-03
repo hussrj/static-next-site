@@ -2,7 +2,7 @@
 title: 'Using the OWASP Juice Shop for fun and security skill practice'
 excerpt: 'OWASP Juice Shop is an insecure web application that can be used for security training and awareness'
 coverImage: '/assets/locked.jpg'
-date: '2020-04-06T05:09:00.000Z'
+date: '2021-04-06T05:09:00.000Z'
 author:
   name: Rob Hussey
   picture: '/assets/blog/authors/light-huss.jpg'

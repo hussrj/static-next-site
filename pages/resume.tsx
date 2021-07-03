@@ -13,12 +13,7 @@ type Props = {
 };
 
 const ResumeView =({ externalComponents }: Props) => {
-  if (process.env.NODE_ENV === "production") {
-    // use minified verion for production
-    pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
-  } else {
-    pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.js";
-  }
+  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
   return (
     <MainView components={externalComponents}>
       <Head>
@@ -73,8 +68,8 @@ export const getStaticProps = async () => {
           _version: 1,
           _deleted: false,
           _lastChangedAt: 1,
-          createdAt: "2020-04-10",
-          updatedAt: "2020-04-10",
+          createdAt: "2021-04-10",
+          updatedAt: "2021-04-10",
         })
       )
     );
