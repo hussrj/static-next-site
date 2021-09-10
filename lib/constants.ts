@@ -6,4 +6,4 @@ export const OWNER_AUTHOR: Author = {
     name: "Rob Hussey",
     picture: "/assets/blog/authors/shadow-huss.jpg"
 }
-export const ABOUT_CONTENT = "Hi! I'm Rob Hussey. This is my personal blog and website. I'm a software developer with a master's degree in computer science and professional experience using Java, Angular, and some languages in between. Personally, I also enjoy Python, TypeScript, JavaScript, and C#, as well as testing out new frameworks that push me to learn new things."
+export const ABOUT_CONTENT = "A website for my technical notes, thoughts, and whatever interests me. This will more often than not be related to computer science and general technology topics. I received my master's from Rowan University in Glassboro, NJ and I enjoy researching new topics, usually related to software languages, computer hardware, and computer networks."
