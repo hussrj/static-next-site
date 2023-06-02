@@ -1,7 +1,7 @@
 ---
-title: 'How to change repository or service provider for AWS Amplify'
+title: 'How to change the repository or service provider for AWS Amplify'
 excerpt: 'AWS Amplify automates the build and deploy of the web app but it can be tricky to switch over to a different repository or provider when needed.'
-coverImage: '/assets/network.jpg'
+coverImage: '/assets/cloud-blue-sky.jpg'
 date: '2023-06-02T18:50:00.000Z'
 author:
   name: Rob Hussey
