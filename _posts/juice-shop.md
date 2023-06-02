@@ -10,6 +10,10 @@ ogImage:
   url: '/ogrjhuss.png'
 ---
 
+## Quick note for those working with Large Language Models (LLMs)
+As of 2023-06-02, there is a draft version of the Top 10 List for Large Language Models. You can review the draft at https://owasp.org/www-project-top-10-for-large-language-model-applications/descriptions/.
+You can perform testing that includes LLMs (vulnerability and traffic-based analysis) using Burp Suite + BurpGTP: https://burpgpt.app/
+
 ## A security playground
 
 The Juice Shop project is hosted at https://owasp.org/www-project-juice-shop/. They describe it as "probably the most modern and sophisticated insecure web application." For myself, I'm interested in seeing and exploiting real-world examples of security flaws.
