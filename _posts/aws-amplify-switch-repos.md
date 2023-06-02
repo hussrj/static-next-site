@@ -18,9 +18,13 @@ Next, you will need to configure access for the CLI with credentials that will b
 ## Make the switch
 Run the following command based on the service provider of the new repository:
 GitHub:
+```
      aws amplify update-app --app-id <APP_ID> --repository <REPO_URL> --access-token <GITHUB_ACCESS_TOKEN>
+```
 CodeCommit or BitBucket:
+```
      aws amplify update-app --app-id <APP_ID> --repository <REPO_URL> --oauthToken <CODECOMMIT_OR_BITBUCKET_TOKEN>
+```
 
 The app-id is the last portion of the app ARN (pattern d[a-z0-9]+). You can find this value in AWS Amplify -> App settings -> General.
 
