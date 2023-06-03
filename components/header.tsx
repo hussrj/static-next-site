@@ -15,20 +15,20 @@ const Header = ({ author }: Props) => {
       <Container>
         <div className="align-middle flex justify-between h-auto w-full">
           <div className="flex-1 justify-start">
-            <Link href="/">
-              <a className="flex items-center hover:underline my-1">
-                <div className="flex-shrink-0">
-                  <Avatar
-                    name={author.name}
-                    picture={author.picture}
-                    textSizeMin="text-lg"
-                    textSizeMax="text-2xl"
-                  />
-                </div>
-                <div className="flex-shrink-0">
-                  <span>'s Website</span>
-                </div>
-              </a>
+            <Link href="/" className="flex items-center hover:underline my-1">
+
+              <div className="flex-shrink-0">
+                <Avatar
+                  name={author.name}
+                  picture={author.picture}
+                  textSizeMin="text-lg"
+                  textSizeMax="text-2xl"
+                />
+              </div>
+              <div className="flex-shrink-0">
+                <span>'s Website</span>
+              </div>
+
             </Link>
           </div>
           <div className="inline-flex items-center">
