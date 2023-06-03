@@ -22,6 +22,7 @@ type Props = {
 
 const Post = ({ post, morePosts, externalComponents }: Props) => {
   const router = useRouter();
+  const title = `${post.title} | RJHUSS`;
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
@@ -34,7 +35,7 @@ const Post = ({ post, morePosts, externalComponents }: Props) => {
           <>
             <article className="mb-32">
               <Head>
-                <title>{post.title} | RJHUSS</title>
+                <title>{title}</title>
                 <meta property="og:image" content={post.ogImage.url} />
               </Head>
               <PostHeader
