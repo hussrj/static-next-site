@@ -16,7 +16,7 @@ interface MyComponentProps extends WithRouterProps {
 class NavigationButton extends React.Component<MyComponentProps> {
   render() {
     return (
-      <Link href={this.props.path} passHref={true}>
+      <Link href={this.props.path} passHref={true} legacyBehavior>
         <div
           role="menuitem"
           className={`${
