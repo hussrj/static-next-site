@@ -2,6 +2,10 @@
 
 /* Write your own custom base styles here */
 
+code {
+  white-space: pre-wrap !important;
+}
+
 /* Start purging... */
 @tailwind components;
 /* Stop purging. */

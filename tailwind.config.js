@@ -1,7 +1,7 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  purge: ['./components/**/*.tsx', './pages/**/*.tsx'],
+  content: ['./components/**/*.tsx', './pages/**/*.tsx'],
   theme: {
     fontFamily: {
       techMono: ['Share Tech Mono', 'monospace', 'sans-serif'],
