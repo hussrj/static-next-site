@@ -38,6 +38,18 @@ code {
   --transform-scale-x: 1;
   --transform-scale-y: 1;
 }
+
+#post-body a {
+  color: #0070f3;
+}
+
+#post-body a:hover {
+  text-decoration: underline;
+}
+
+#post-body a:visited {
+  color: #70a0f3;
+}
 /* Start purging... */
 @tailwind utilities;
 /* Stop purging. */

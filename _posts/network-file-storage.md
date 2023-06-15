@@ -16,7 +16,7 @@ For my file server, I'm using a simple Raspberry Pi 4 device running Raspbian OS
 
 ## A note about NFS and Windows Explorer
 
-NTFS has a nifty feature called Alternate Data Streams which allows additional files to be stored alongside the main file data. These additional files provide metadata about the file. My NFS share does not use the NTFS filesystem, but still I see Zone.Identifier metadata files being created if I copy a folder or file using Windows Explorer to my NFS share. This is possibly related to https://github.com/microsoft/WSL/issues/4609 since I do have WSL installed, however the drive is mapped using the usual map network drive option in Windows Explorer, so no tying it to WSL on my part.
+NTFS has a nifty feature called Alternate Data Streams which allows additional files to be stored alongside the main file data. These additional files provide metadata about the file. My NFS share does not use the NTFS filesystem, but still I see Zone.Identifier metadata files being created if I copy a folder or file using Windows Explorer to my NFS share. This is possibly related to [WSL issue #4609](https://github.com/microsoft/WSL/issues/4609) since I do have WSL installed, however the drive is mapped using the usual map network drive option in Windows Explorer, so no tying it to WSL on my part.
 
 For now, I am simply avoiding copying any files using Windows Explorer to the drive.
 
