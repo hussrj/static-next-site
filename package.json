@@ -4,8 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "typecheck": "tsc"
+    "start": "next start"
   },
   "dependencies": {
     "@aws-amplify/ui-react": "^4.6.4",
