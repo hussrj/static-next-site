@@ -63,7 +63,6 @@ type Params = {
 };
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
-  console.log('Params:', params);
   if (!params || !params['slug']) return { props: {} };
   const slug = params['slug'].toString();
   const post = getPostBySlug(slug, [
