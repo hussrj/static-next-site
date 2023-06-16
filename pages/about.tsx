@@ -37,7 +37,7 @@ const AboutView = ({ externalComponents }: Props) => {
 
 export default AboutView;
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const externalToolsResult = (await API.graphql(
     graphqlOperation(listExternalComponents, {
       filter: {
