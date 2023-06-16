@@ -43,7 +43,7 @@ const PostsView = ({ allPosts, externalComponents }: Props) => {
 
 export default PostsView;
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const allPosts = getAllPosts([
     "title",
     "date",
