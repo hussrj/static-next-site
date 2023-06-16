@@ -44,7 +44,7 @@ function Index({ allPosts, externalComponents }: Props) {
 
 export default Index;
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const allPosts = getAllPosts([
     "title",
     "date",

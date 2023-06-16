@@ -9,7 +9,7 @@ frontend:
         - npx next telemetry disable
         - npm run build
   artifacts:
-    baseDirectory: out
+    baseDirectory: .next
     files:
       - '**/*'
   cache:

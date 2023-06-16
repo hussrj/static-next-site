@@ -13,6 +13,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import { ExternalComponent, ListExternalComponentsQuery } from "src/API";
 import { listExternalComponents } from "src/graphql/queries";
 import { GraphQLResult } from "@aws-amplify/api";
+import { GetStaticPropsContext } from "next";
 
 type Props = {
   post: PostType;
@@ -61,8 +62,10 @@ type Params = {
   };
 };
 
-export async function getStaticProps({ params }: Params) {
-  const post = getPostBySlug(params.slug, [
+export async function getStaticProps({ params }: GetStaticPropsContext) {
+  if (!params || !params['slug']) return { props: {} };
+  const slug = params['slug'].toString();
+  const post = getPostBySlug(slug, [
     "title",
     "date",
     "slug",
@@ -120,7 +123,7 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPosts(["slug"]);
+  const posts = await getAllPosts(["slug"]);
 
   return {
     paths: posts.map((posts) => {
