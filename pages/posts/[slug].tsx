@@ -4,24 +4,20 @@ import Container from "../../components/container";
 import PostBody from "../../components/post-body";
 import PostHeader from "../../components/post-header";
 import MainView from "../../components/main-view";
-import { getPostBySlug, getAllPosts } from "../../lib/api";
+import { getPostBySlug, getAllPosts, getAllComponents } from "../../lib/api";
 import PostTitle from "../../components/post-title";
 import Head from "next/head";
 import markdownToHtml from "../../lib/markdownToHtml";
 import PostType from "../../types/post";
-import { API, graphqlOperation } from "aws-amplify";
-import { ExternalComponent, ListExternalComponentsQuery } from "src/API";
-import { listExternalComponents } from "src/graphql/queries";
-import { GraphQLResult } from "@aws-amplify/api";
+import { ExternalComponent } from "src/API";
 import { GetStaticPropsContext } from "next";
 
 type Props = {
   post: PostType;
-  morePosts: PostType[];
   externalComponents: ExternalComponent[];
 };
 
-const Post = ({ post, morePosts, externalComponents }: Props) => {
+const Post = ({ post, externalComponents }: Props) => {
   const router = useRouter();
   const title = `${post.title} | RJHUSS`;
   if (!router.isFallback && !post?.slug) {
@@ -75,41 +71,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
     "coverImage",
   ]);
   const content = await markdownToHtml(post.content || "");
-  const externalToolsResult = (await API.graphql(
-    graphqlOperation(listExternalComponents, {
-      filter: {
-        tags: {
-          contains: "rjhuss",
-        },
-      },
-      authMode: "AWS_IAM",
-    })
-  )) as GraphQLResult<ListExternalComponentsQuery>;
-  let externalComponents: ExternalComponent[] = [];
-  if (
-    externalToolsResult.data !== undefined &&
-    externalToolsResult.data.listExternalComponents !== undefined &&
-    externalToolsResult.data.listExternalComponents !== null
-  ) {
-    externalToolsResult.data.listExternalComponents.items?.map((extComp: ExternalComponent | null) => (
-      externalComponents.push(
-        extComp = extComp ? extComp : {
-          __typename: "ExternalComponent",
-          id: "1",
-          name: "Loading...",
-          href: "",
-          tags: [""],
-          _version: 1,
-          _deleted: false,
-          _lastChangedAt: 1,
-          createdAt: "2020-04-10",
-          updatedAt: "2020-04-10",
-        })
-      )
-    );
-  } else {
-    externalComponents = [];
-  }
+  let externalComponents: ExternalComponent[] = await getAllComponents();
 
   return {
     props: {
@@ -123,7 +85,7 @@ export async function getStaticProps({ params }: GetStaticPropsContext) {
 }
 
 export async function getStaticPaths() {
-  const posts = await getAllPosts(["slug"]);
+  const posts = getAllPosts(["slug"]);
 
   return {
     paths: posts.map((posts) => {
