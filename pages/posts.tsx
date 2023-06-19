@@ -1,12 +1,9 @@
 import MainView from "../components/main-view";
 import Head from "next/head";
 import Container from "../components/container";
-import { getAllPosts } from "../lib/api";
+import { getAllComponents, getAllPosts } from "../lib/api";
 import Post from "../types/post";
-import { API, graphqlOperation } from "aws-amplify";
-import { ExternalComponent, ListExternalComponentsQuery } from "src/API";
-import { listExternalComponents } from "src/graphql/queries";
-import { GraphQLResult } from "@aws-amplify/api";
+import { ExternalComponent } from "src/API";
 import { HOME_OG_IMAGE_URL } from "../lib/constants";
 
 type Props = {
@@ -43,7 +40,7 @@ const PostsView = ({ allPosts, externalComponents }: Props) => {
 
 export default PostsView;
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const allPosts = getAllPosts([
     "title",
     "date",
@@ -52,41 +49,8 @@ export const getServerSideProps = async () => {
     "coverImage",
     "excerpt",
   ]);
-  const externalToolsResult = (await API.graphql(
-    graphqlOperation(listExternalComponents, {
-      filter: {
-        tags: {
-          contains: "rjhuss",
-        },
-      },
-      authMode: "AWS_IAM",
-    })
-  )) as GraphQLResult<ListExternalComponentsQuery>;
-  let externalComponents: ExternalComponent[] = [];
-  if (
-    externalToolsResult.data !== undefined &&
-    externalToolsResult.data.listExternalComponents !== undefined &&
-    externalToolsResult.data.listExternalComponents !== null
-  ) {
-    externalToolsResult.data.listExternalComponents.items?.map((extComp: ExternalComponent | null) => (
-      externalComponents.push(
-        extComp = extComp ? extComp : {
-          __typename: "ExternalComponent",
-          id: "1",
-          name: "Loading...",
-          href: "",
-          tags: [""],
-          _version: 1,
-          _deleted: false,
-          _lastChangedAt: 1,
-          createdAt: "2020-04-10",
-          updatedAt: "2020-04-10",
-        })
-      )
-    );
-  } else {
-    externalComponents = [];
-  }
+
+  let externalComponents: ExternalComponent[] = await getAllComponents();
 
   return {
     props: { allPosts, externalComponents },
