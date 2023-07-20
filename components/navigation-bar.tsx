@@ -6,11 +6,11 @@ interface WithRouterProps {
   router: NextRouter;
 }
 
-interface MyComponentProps extends WithRouterProps {
+interface NavigationBarProps extends WithRouterProps {
   navButtons: { label: string; path: string; icon: ReactElement }[];
 }
 
-class NavigationBar extends React.Component<MyComponentProps> {
+class NavigationBar extends React.Component<NavigationBarProps> {
   state = {
     active: false,
   };
